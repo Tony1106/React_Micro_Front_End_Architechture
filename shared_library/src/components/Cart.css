@@ -1,0 +1,22 @@
+.cart-product {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+.cart-wrapper ul {
+    padding-left: 0;
+}
+li .productName {
+    width: 400px;
+}
+li .productPrice {
+    width: 200px;
+}
+li .productQuantity, li .productTotal {
+    width: 200px;
+}

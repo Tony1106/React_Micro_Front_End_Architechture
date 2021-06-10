@@ -1,0 +1,21 @@
+.info {
+  border: 1px solid grey;
+  width: 350px;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.productName {
+  color: blue;
+}
+.price {
+  color: red;
+}
+.cross {
+    text-decoration: line-through;
+    color: black;
+}
+.small {
+  font-size: 10px;
+  font-weight: 600;
+}

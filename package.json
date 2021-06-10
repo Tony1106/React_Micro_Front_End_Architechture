@@ -1,0 +1,14 @@
+{
+  "name": "micro_front_end",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start_home": "cd home && npm start",
+    "start_view_product": "cd view_product && npm start",
+    "start": "npm run start_home && cd .. && npm run  start_view_product"
+  },
+  "author": "",
+  "license": "ISC"
+}

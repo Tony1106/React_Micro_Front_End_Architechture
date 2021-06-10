@@ -1,0 +1,31 @@
+
+nav ul {
+    display: flex;
+    list-style: none;
+    padding-bottom: 30px;
+    border-bottom: 2px solid grey;
+}
+nav ul li {
+    margin-right: 20px;
+    padding: 10px 20px;
+    color: red;
+    border: 1px solid rebeccapurple;
+}
+nav ul li:hover {
+    background-color: rosybrown;
+}
+.header-cart {
+    position: relative;
+}
+.circle {
+    position: absolute;
+    top: -12px;
+    height: 25px;
+    width: 25px;
+    border-radius: 100%;
+    background-color: skyblue;
+    right: -10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
