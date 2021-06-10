@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "webpack": "npx webpack",
+    "build": "npx webpack",
     "start": "webpack serve",
     "updateShared": "rm -r node_modules/shared_library && npm i ./shared_library-1.0.0.tgz"
   },
