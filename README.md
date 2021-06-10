@@ -8,14 +8,17 @@ A small project apply Webpack Federation to build micro front architecture. Usin
 Each app will have their own code base and a deploy process. App1, App2, App3... are one of the feature/business domain of App which will be deploy seperate to other host(we call it remote app). App is the Wrapper which consume all the features from other app, App decide how to use those feature and manage global store and routing.
 
 But the is some question need to consider: 
-How App1, App2... share store access global store and mutate global store? 
-How to redirect page when App control Routing?
-How to share common UI component, helper function?
+
+1. How App1, App2... share state and access global store and mutate global store? 
+2. How to redirect page when App control Routing?
+3. How to share common UI component, helper function?
 
 To solve this, I create another shared library which will bundle and export UI components, models, helper functions...
 Then we can publish it to npm and other project can install the shared library to use. By this way, we also build a contract thoughout each team which work in different project.
-For example, when we want to add new state in global store, the first thing we need to go to shared_library to update the IStore interface.
+For example, when we want to add new state in global store, the first thing we need to do is go to `shared_library`  to update the IStore interface.
+
 To access to global store we will pass `useStore` as a props to the remote app. 
+
 To access to router, we wraper the remote app inside `withRouter` to get `history` object and pass to the remote app.
 # App
 * ./home: main app run on port 8080
