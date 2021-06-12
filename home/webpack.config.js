@@ -3,12 +3,14 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
 const dependencies = require('./package.json').dependencies;
-const env = process.env.NODE_ENV;
-const publicPath = env == 'development' ? "http://localhost:8080/": "http://federation-app2.s3-website-ap-southeast-2.amazonaws.com/"
-module.exports = {
+
+const mkPublicPath = (env) => {
+  return env.development ? "http://localhost:8080/": "http://federation-app1.s3-website-ap-southeast-2.amazonaws.com/" 
+}
+module.exports = env => ({
   entry: path.join(__dirname, "src", "app"),
-  output: {  publicPath, path: path.join(__dirname, "build"), filename: "index.bundle.js" },
-  mode: process.env.NODE_ENV || "development",
+  output: {  publicPath: mkPublicPath(env), path: path.join(__dirname, "build"), filename: "index.bundle.js" },
+  mode: env.production ? 'production': "development",
   resolve: { modules: [path.resolve(__dirname, "src"), "node_modules"], extensions: ['.ts', '.tsx', '.js', '.jsx'] },
   devServer: { contentBase: path.join(__dirname, "src"), port: 8080 },
   devtool: 'source-map',
@@ -55,4 +57,4 @@ module.exports = {
       },
     ],
   },
-};
+});

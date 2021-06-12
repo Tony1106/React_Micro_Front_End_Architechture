@@ -2,12 +2,14 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
 const dependencies = require('./package.json').dependencies;
-const env = process.env.NODE_ENV;
-const publicPath = env == 'development' ? "http://localhost:8081/": "http://federation-app1.s3-website-ap-southeast-2.amazonaws.com/"
-module.exports = {
+const mkPublicPath = (env) => {
+  return env.development ? "http://localhost:8081/": "http://federation-app1.s3-website-ap-southeast-2.amazonaws.com/" 
+}
+module.exports = (env) => {
+  return {
   entry: path.join(__dirname, "src", "index"),
-  output: {  publicPath, path: path.join(__dirname, "build"), filename: "index.bundle.js" },
-  mode: process.env.NODE_ENV || "development",
+  output: {  publicPath: mkPublicPath(env), path: path.join(__dirname, "build"), filename: "index.bundle.js" },
+  mode: env.production ? 'production' : "development",
   resolve: { modules: [path.resolve(__dirname, "src"), "node_modules"], extensions: ['.ts', '.tsx', '.js', '.jsx'] },
   devServer: { contentBase: path.join(__dirname, "src"), port: 8081 },
   devtool: 'source-map',
@@ -24,10 +26,13 @@ module.exports = {
         exposes: {
           './ProductList': './src/ProductList'
         },
-        shared: { react: { singleton: true, eager: true, requiredVersion: dependencies.react },
-          "react-dom": { singleton: true, eager: true, requiredVersion: dependencies["react-dom"] },
-          "react-router-dom": { singleton: true, eager: true, requiredVersion: dependencies["react-router-dom"] },
-          "shared_library": { singleton: true, eager: true, requiredVersion: dependencies["shared_library"] }}
+        shared: { 
+          react: { singleton: true, requiredVersion: dependencies.react },
+          "react-dom": { singleton: true, requiredVersion: dependencies["react-dom"] },
+          "react-router-dom": { singleton: true, requiredVersion: dependencies["react-router-dom"] },
+          "shared_library": { singleton: true, requiredVersion: dependencies["shared_library"] },
+          "faker": { singleton: true, requiredVersion: dependencies["faker"] }
+        }
       })
   ],
   module: {
@@ -51,4 +56,4 @@ module.exports = {
       },
     ],
   },
-};
+}};
