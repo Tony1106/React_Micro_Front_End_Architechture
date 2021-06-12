@@ -5,7 +5,7 @@ const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPl
 const dependencies = require('./package.json').dependencies;
 
 const mkPublicPath = (env) => {
-  return env.development ? "http://localhost:8080/": "http://federation-app1.s3-website-ap-southeast-2.amazonaws.com/" 
+  return env.development ? "http://localhost:8080/": "http://federation-app2.s3-website-ap-southeast-2.amazonaws.com/" 
 }
 module.exports = env => ({
   entry: path.join(__dirname, "src", "app"),
