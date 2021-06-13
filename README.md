@@ -5,6 +5,8 @@ A small project apply Webpack Federation to build micro front architecture. Usin
 
 ![Architechture](https://github.com/Tony1106/React_Micro_Front_End_Architechture/blob/master/architechture.png?raw=true)
 
+![App Diagram](https://github.com/Tony1106/React_Micro_Front_End_Architechture/blob/master/app_diagram.png?raw=true)
+
 # Architechture: 
 Each app will have their own code base and a deploy process. App1, App2, App3... are one of the feature/business domain of App which will be deploy seperate to other host(we call it remote app). App is the Wrapper which consume all the features from other app, App decide how to use those feature and manage global store and routing.
 
